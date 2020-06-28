@@ -1,24 +1,38 @@
-const endpoint = "https://api.whatdoestrumpthink.com/api/v1/quotes/random";
+const twitterButton = document.querySelector('#js-tweet');
+const spinner = document.querySelector('#js-spinner');
+const newQuoteButton = document.querySelector('#js-new-quote');
+newQuoteButton.addEventListener('click', getQuote);
 
-function getQuote() {
-  fetch(endpoint)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      displayQuote(data.message);
-    });
+const endpoint = 'https://api.whatdoestrumpthink.com/api/v1/quotes/random';
+
+async function getQuote() {
+  spinner.classList.remove('hidden');
+  newQuoteButton.disabled = true;
+
+  try {
+    const response = await fetch(endpoint)
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    const json = await response.json();
+    displayQuote(json.message);
+    setTweetButton(json.message);
+  } catch(err) {
+    console.log(err)
+    alert('Failed to fetch new quote');
+  } finally {
+    newQuoteButton.disabled = false;
+    spinner.classList.add('hidden');
+  }
 }
 
 function displayQuote(quote) {
-  const quoteText = document.querySelector(".quote-text");
+  const quoteText = document.querySelector('#js-quote-text');
   quoteText.textContent = quote;
-  
-  const twitterButton = document.querySelector(".twitter");
-  twitterButton.setAttribute("href", `https://twitter.com/share?text=${quote} - Donald Trump`);
 }
 
-const newQuoteButton = document.querySelector(".new-quote");
-newQuoteButton.addEventListener("click", getQuote);
+function setTweetButton(quote) {
+  twitterButton.setAttribute('href', `https://twitter.com/share?text=${quote} - Donald Trump`);
+}
 
 getQuote();

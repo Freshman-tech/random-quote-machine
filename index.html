@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Random Quote Machine</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>  
-  
-  <main class="app">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Random Quote Machine - Freshman.tech</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>Random Donald Trump Quotes</header>
+      <section class="quotes">
+        <div class="quote-text" id="js-quote-text"></div>
+      </section>
+      <div id="js-spinner" class="spinner hidden">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+      <section class="controls">
+        <button type="button" class="new-quote button" id="js-new-quote ">
+          Generate a new quote
+        </button>
+        <a class="twitter button" id="js-tweet" target="_blank" rel="noreferrer"
+          >Tweet it!</a
+        >
+      </section>
+    </div>
 
-    <section class="quotes">
-      <div class="quote-text"></div>
-    </section>
-    <section class="controls">
-      <a class="twitter button" target="_blank" rel="noreferrer">Tweet</a>
-      <button type="button" class="new-quote button">New Quote</button>
-    </section>
-
-  </main>
-
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
